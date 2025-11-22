@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mortgage Calculator</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.15.0/cdn/themes/light.css" />
+    <script type="module"
+        src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.15.0/cdn/shoelace-autoloader.js"></script>
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="payment-display">
+            <div class="payment-label">Estimated Payment (<span id="selectedTerm">30</span> Year)</div>
+            <div>
+                <span class="payment-amount" id="monthlyPayment">$2,625</span>
+                <span class="payment-period">/mt</span>
+            </div>
+        </div>
+
+        <sl-button variant="primary" id="detailsBtn">See Details</sl-button>
+
+        <div class="form-group">
+            <label class="form-label">Home price</label>
+            <div class="input-wrapper">
+                <span class="input-prefix">$</span>
+                <input type="text" id="homePrice" class="native-input" value="500,000" placeholder="0">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Down payment</label>
+            <div class="slider-container">
+                <div class="slider-value" id="downPaymentValue" style="left: 22.22%;">20% - $100,000</div>
+                <sl-range id="downPaymentSlider" min="0" max="90" value="20" step="1" tooltip="none">
+                </sl-range>
+            </div>
+            <div class="slider-labels">
+                <span class="slider-label">0%</span>
+                <span class="slider-label">90%</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Interest rate</label>
+            <div class="slider-container">
+                <div class="slider-value" id="interestRateValue" style="left: 35%;">7.00%</div>
+                <sl-range id="interestRateSlider" min="0" max="20" value="7" step="0.01" tooltip="none">
+                </sl-range>
+            </div>
+            <div class="slider-labels">
+                <span class="slider-label">0%</span>
+                <span class="slider-label">20%</span>
+            </div>
+        </div>
+
+        <div id="details" class="details">
+            <div class="details-grid">
+                <sl-card data-term="50">
+                    <div class="term-header">50</div>
+                    <div class="term-subtitle">year fixed</div>
+                    <div class="breakdown-item">
+                        <div class="breakdown-label">Monthly</div>
+                        <div class="breakdown-value highlight" id="monthly50">$0</div>
+                    </div>
+                    <div class="breakdown-item">
+                        <div class="breakdown-label">Loan Amount</div>
+                        <div class="breakdown-value" id="loan50">$0</div>
+                    </div>
+                    <div class="breakdown-item">
+                        <div class="breakdown-label">Total Interest</div>
+                        <div class="breakdown-value" id="interest50">$0</div>
+                    </div>
+                    <div class="breakdown-item">
+                        <div class="breakdown-label">Total Paid</div>
+                        <div class="breakdown-value" id="total50">$0</div>
+                    </div>
+                </sl-card>
+
+                <sl-card data-term="30" class="selected">
+                    <div class="term-header">30</div>
+                    <div class="term-subtitle">year fixed</div>
+                    <div class="breakdown-item">
+                        <div class="breakdown-label">Monthly</div>
+                        <div class="breakdown-value highlight" id="monthly30">$0</div>
+                    </div>
+                    <div class="breakdown-item">
+                        <div class="breakdown-label">Loan Amount</div>
+                        <div class="breakdown-value" id="loan30">$0</div>
+                    </div>
+                    <div class="breakdown-item">
+                        <div class="breakdown-label">Total Interest</div>
+                        <div class="breakdown-value" id="interest30">$0</div>
+                    </div>
+                    <div class="breakdown-item">
+                        <div class="breakdown-label">Total Paid</div>
+                        <div class="breakdown-value" id="total30">$0</div>
+                    </div>
+                </sl-card>
+
+                <sl-card data-term="15">
+                    <div class="term-header">15</div>
+                    <div class="term-subtitle">year fixed</div>
+                    <div class="breakdown-item">
+                        <div class="breakdown-label">Monthly</div>
+                        <div class="breakdown-value highlight" id="monthly15">$0</div>
+                    </div>
+                    <div class="breakdown-item">
+                        <div class="breakdown-label">Loan Amount</div>
+                        <div class="breakdown-value" id="loan15">$0</div>
+                    </div>
+                    <div class="breakdown-item">
+                        <div class="breakdown-label">Total Interest</div>
+                        <div class="breakdown-value" id="interest15">$0</div>
+                    </div>
+                    <div class="breakdown-item">
+                        <div class="breakdown-label">Total Paid</div>
+                        <div class="breakdown-value" id="total15">$0</div>
+                    </div>
+                </sl-card>
+
+                <sl-card data-term="10">
+                    <div class="term-header">10</div>
+                    <div class="term-subtitle">year fixed</div>
+                    <div class="breakdown-item">
+                        <div class="breakdown-label">Monthly</div>
+                        <div class="breakdown-value highlight" id="monthly10">$0</div>
+                    </div>
+                    <div class="breakdown-item">
+                        <div class="breakdown-label">Loan Amount</div>
+                        <div class="breakdown-value" id="loan10">$0</div>
+                    </div>
+                    <div class="breakdown-item">
+                        <div class="breakdown-label">Total Interest</div>
+                        <div class="breakdown-value" id="interest10">$0</div>
+                    </div>
+                    <div class="breakdown-item">
+                        <div class="breakdown-label">Total Paid</div>
+                        <div class="breakdown-value" id="total10">$0</div>
+                    </div>
+                </sl-card>
+            </div>
+        </div>
+        <div class="disclaimer form-label">
+            <span><i>Note: Figures are estimates for illustrative purposes only and do not include taxes, insurance, or
+                    HOA fees. This is not an offer to lend.</i></span>
+        </div>
+    </div>
+
+
+
+
+    <script type="module" src="./js/app.js"></script>
+</body>
+
+</html>
