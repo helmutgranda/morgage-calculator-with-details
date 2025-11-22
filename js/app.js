@@ -107,6 +107,11 @@ document.getElementById('detailsBtn').addEventListener('click', function() {
     var details = document.getElementById('details');
     details.classList.toggle('show');
     this.textContent = details.classList.contains('show') ? 'Hide Details' : 'See Details';
+    
+    // Ensure calculations are up-to-date when details are shown
+    if (details.classList.contains('show')) {
+        calculateAll();
+    }
 });
 
 var cards = document.querySelectorAll('sl-card[data-term]');
